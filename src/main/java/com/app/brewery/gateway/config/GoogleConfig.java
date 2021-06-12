@@ -17,7 +17,8 @@ public class GoogleConfig {
     public RouteLocator googleRouteConfig(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route(r -> r.path("/googlesearch")
-                .uri("https://www.google.com/")
+                        .filters(f -> f.rewritePath("/googlesearch(?<segment>/?.*)", "/${segment}"))
+                .uri("https://www.google.com")
                 .id("google"))
                 .build();
     }
