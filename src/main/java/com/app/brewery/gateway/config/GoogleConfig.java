@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Profile;
  * @author t0k02w6 on 12/06/21
  * @project mssc-brewery-gateway
  */
-@Profile("google")
-@Configuration
+//@Profile("google")
+//@Configuration
 public class GoogleConfig {
     @Bean
     public RouteLocator googleRouteConfig(RouteLocatorBuilder builder) {
