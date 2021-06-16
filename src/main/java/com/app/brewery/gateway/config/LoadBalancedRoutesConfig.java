@@ -7,24 +7,24 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 /**
- * @author t0k02w6 on 14/06/21
+ * @author t0k02w6 on 16/06/21
  * @project mssc-brewery-gateway
  */
-@Profile("!local-discovery")
+@Profile("local-discovery")
 @Configuration
-public class LocalHostRouteConfig {
+public class LoadBalancedRoutesConfig {
     @Bean
-    public RouteLocator localHostRoutes(RouteLocatorBuilder builder) {
+    public RouteLocator loadBalancedRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route(r -> r.path("/api/v1/beer*","/api/v1/beer/*", "/api/v1/beer/upc/*")
-                .uri("http://localhost:9091/")
-                .id("beer-service"))
+                        .uri("lb://beer-service")
+                        .id("beer-service"))
                 .route(r -> r.path("/api/v1/customers**", "/api/v1/customers/**")
-                .uri("http://localhost:9094/")
-                .id("beer-order-service"))
+                        .uri("lb://beer-order-service")
+                        .id("beer-order-service"))
                 .route(r -> r.path("/api/v1/beer/*/inventory")
-                .uri("http://localhost:9093/")
-                .id("beer-inventory-service"))
+                        .uri("lb://beer-inventory-service")
+                        .id("beer-inventory-service"))
                 .build();
     }
 }
