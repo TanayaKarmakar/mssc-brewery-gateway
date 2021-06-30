@@ -16,7 +16,7 @@
     <properties>
         <java.version>11</java.version>
         <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
-        <docker.image.prefix>mssc-beer</docker.image.prefix>
+        <docker.image.prefix>tanayak</docker.image.prefix>
         <docker.image.name>${project.artifactId}</docker.image.name>
     </properties>
     <dependencies>
